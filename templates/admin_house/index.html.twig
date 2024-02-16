@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}House index{% endblock %}
+
+{% block body %}
+    <h1>House index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Picture</th>
+                <th>Name</th>
+                <th>Rooms</th>
+                <th>Area</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for house in houses %}
+            <tr>
+                <td>{{ house.id }}</td>
+                {% if house.pictures.count > 0 %}
+                    <td><img src="{{ vich_uploader_asset(house.pictures.get(0), 'imageFile') }}"></td>
+                {% endif %}
+                
+
+                <td>{{ house.name }}</td>
+                <td>{{ house.rooms }}</td>
+                <td>{{ house.area }} m²</td>
+                <td>{{ house.price / 100 }} €</td>
+                <td>
+                    <a href="{{ path('admin_house_show', {'id': house.id}) }}">show</a>
+                    <a href="{{ path('admin_house_edit', {'id': house.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_house_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Houses{% endblock %}
+{% block body %}
+    <h2>Houses</h2>
+
+    <div class="row">
+        {% for house in houses %}
+            <div class="col">
+                {% include "house/_card.html.twig" %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

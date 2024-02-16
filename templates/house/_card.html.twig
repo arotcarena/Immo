@@ -1,0 +1,14 @@
+<div class="card" style="width: 18rem;">
+
+  {% if house.pictures.count > 0  %}
+   <img src="{{ vich_uploader_asset(house.pictures.get(0), 'imageFile') }}" class="card-img-top">
+  {% endif %}
+  
+ 
+  <div class="card-body">
+    <h5 class="card-title">{{ house.name }}</h5>
+    <p class="card-text">{{ house.rooms }} pièce{% if house.rooms > 1 %}s{% endif %} - {{ house.area }} m²</p>
+    <p class="card-text" style="font-size: 2em;">{{ house.price / 100 }} €</p>
+    <a href="{{ path('house_show', {'id': house.id}) }}" class="btn btn-primary">Voir plus</a>
+  </div>
+</div>

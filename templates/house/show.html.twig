@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{house.name}}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-1">
+            <a href="{{ path('house_index') }}" style="font-size: 3em;"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-9">
+                    <div class="row">
+                        {% for picture in house.pictures %}
+                            <div class="col">
+                                <img src="{{ vich_uploader_asset(picture, 'imageFile') }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col">
+                    <h2>{{ house.name }}</h2>
+                    <p>{{house.rooms}} pièce{% if house.rooms > 1 %}s{% endif %} - {{ house.area }} m²</p>
+                    <p style="font-size: 4em; font-weight: bold;">{{house.price / 100}} €</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <h2>Caractéristiques du bien</h2>
+                </div>
+                <div class="col">
+                    <h2>Options</h2>
+                </div>
+            </div>
+        </div>
+    
+
+
+{% endblock %}

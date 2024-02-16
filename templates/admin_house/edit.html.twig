@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit House{% endblock %}
+
+{% block body %}
+    <h1>Edit House</h1>
+
+    <div class="row">
+        {% for picture in house.pictures %}
+        <div class="col-3 mt-4">
+                
+                <img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('thumb') }}">
+                
+
+
+                <form action="{{ path('admin_house_picture_delete') }}" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ picture.id) }}">
+                    <input type="hidden" name="id" value="{{ picture.id }}">
+                    <button class="btn btn-danger" ><i class ="bi bi-trash"></i></button>
+                </form>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {{ include('admin_house/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_house_index') }}">back to list</a>
+
+    {{ include('admin_house/_delete_form.html.twig') }}
+{% endblock %}
